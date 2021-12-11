@@ -47,9 +47,10 @@ class ButtonWithRipple extends StatelessWidget {
 
 abstract class MyButton extends StatelessWidget {
   const MyButton(Key? key, this.onPress, this.borderRadious, this.text,
-      this.borderColor, this.padding, this.widht)
+      this.borderColor, this.padding, this.widht, this.margin)
       : super(key: key);
 
+  final EdgeInsetsGeometry margin;
   final onPress;
   final double? borderRadious;
   final Text? text;
@@ -66,23 +67,28 @@ class ButtonOutLine extends MyButton {
       Text? text,
       Color? borderColor,
       double padding = 5.0,
-      double widht = double.infinity})
-      : super(key, onPress, borderRadious, text, borderColor, padding, widht);
+      double widht = double.infinity,
+      margin = const EdgeInsets.all(0)})
+      : super(key, onPress, borderRadious, text, borderColor, padding, widht,
+            margin);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widht,
-      height: 33,
-      child: OutlinedButton(
-        onPressed: onPress,
-        style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.all(padding),
-            primary: Colors.blue,
-            side: BorderSide(width: 1.5, color: borderColor ?? Colors.black),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadious ?? 50.0))),
-        child: text ?? const Text("button"),
+    return Padding(
+      padding: margin,
+      child: SizedBox(
+        width: widht,
+        height: 33,
+        child: OutlinedButton(
+          onPressed: onPress,
+          style: OutlinedButton.styleFrom(
+              padding: EdgeInsets.all(padding),
+              primary: Colors.blue,
+              side: BorderSide(width: 1.5, color: borderColor ?? Colors.black),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(borderRadious ?? 50.0))),
+          child: text ?? const Text("button"),
+        ),
       ),
     );
   }
@@ -90,14 +96,16 @@ class ButtonOutLine extends MyButton {
 
 class ButtonElevated extends MyButton {
   const ButtonElevated(
-      {Key? key,
+      Key? key,
       onPress,
       double? borderRadious,
       Text? text,
       Color? borderColor,
-      double padding = 5.0,
-      double widht = double.infinity})
-      : super(key, onPress, borderRadious, text, borderColor, padding, widht);
+      double padding,
+      double widht,
+      EdgeInsetsGeometry margin)
+      : super(key, onPress, borderRadious, text, borderColor, padding, widht,
+            margin);
 
   @override
   Widget build(BuildContext context) {

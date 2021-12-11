@@ -6,7 +6,7 @@ class FormFieldRounded extends StatelessWidget {
   final double widht;
   final String hintText;
   final TextInputType inputType;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? validateText;
   final String? label;
   final bool isMultiline;
@@ -17,7 +17,7 @@ class FormFieldRounded extends StatelessWidget {
       this.hintText = "Ex. Hint",
       Key? key,
       this.inputType = TextInputType.text,
-      required this.controller,
+      this.controller,
       this.validateText,
       this.label,
       this.labelStyle,

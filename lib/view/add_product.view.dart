@@ -1,5 +1,6 @@
 import 'package:demo_goods_manage_flutter_app/view/widgets/image_picker.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/input_field.widget.dart';
+import 'package:demo_goods_manage_flutter_app/view/widgets/product_variant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,15 @@ class _AddProductState extends State<AddProduct> {
             child: ListView(
               shrinkWrap: true,
               children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      "Add Product",
+                      style: textTheme.headline6,
+                    ),
+                  ),
+                ),
                 Text(
                   "Product Images ",
                   style: textTheme.subtitle1,
@@ -63,7 +73,31 @@ class _AddProductState extends State<AddProduct> {
                   label: "Product Description",
                   hintText: "Enter Product Description",
                   isMultiline: true,
-                )
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const ProductVariant(),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 5),
+                      /*     side:
+                        const BorderSide(color: MyColors.borderDark, width: 1),*/
+                      maximumSize: const Size(150, 40),
+                      shadowColor: Colors.blueGrey,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6)),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Submit")),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
