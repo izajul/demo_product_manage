@@ -12,10 +12,9 @@ final theme = ThemeData(
     // Notice that the counter didn't reset back to zero; the application
     // is not restarted.
     fontFamily: "Georgia",
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     primarySwatch: MyColors.primary,
     primaryColor: MyColors.primary,
-    colorScheme: theme.colorScheme.copyWith(secondary: MyColors.primaryAccent),
     backgroundColor: Colors.white,
     textTheme: textTheme,
     shadowColor: MyColors.shadow,
@@ -36,10 +35,10 @@ const textTheme = TextTheme(
       TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: MyColors.textDark),
   caption: TextStyle(fontSize: 12.0),
   subtitle1: TextStyle(
-      fontSize: 12.0,
-      fontWeight: FontWeight.w500,
-      color: MyColors.textDark,
-      fontStyle: FontStyle.italic),
+    fontSize: 14.0,
+    fontWeight: FontWeight.w700,
+    color: MyColors.textDark,
+  ),
   subtitle2: TextStyle(
       fontSize: 12.0, fontWeight: FontWeight.w500, color: MyColors.textDark),
   button: TextStyle(
