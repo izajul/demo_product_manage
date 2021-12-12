@@ -1,6 +1,8 @@
+import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
 import 'package:demo_goods_manage_flutter_app/view/add_product.view.dart';
 import 'package:demo_goods_manage_flutter_app/view/splash.view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 Route onGenerateRoute(settings) {
   Widget _nextPage;
@@ -10,7 +12,10 @@ Route onGenerateRoute(settings) {
       _nextPage = const Splash();
       break;
     case AddProduct.routeName:
-      _nextPage = const AddProduct();
+      _nextPage = Provider<AddProductStore>(
+        create: (_) => AddProductStore(),
+        child: const AddProduct(),
+      );
       break;
     default:
       _nextPage = const Splash();

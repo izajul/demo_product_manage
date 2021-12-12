@@ -18,57 +18,66 @@ abstract class _AddProductStore with Store {
   _AddProductStore(this._repo);
 
   @observable
-  ProductModel product =
-      ProductModel(variants: [], images: []); // assigning empty array
+  String name = "";
+
+  @observable
+  String description = "";
+
+  @observable
+  var images = ObservableList<String>();
+
+  @observable
+  var variants = ObservableList<Variant>();
 
   @observable
   bool status = false;
 
   @action
-  Future addImages(List<XFile> list) async {
+  Future addImages() async {
+    final list = await ImagePicker().pickMultiImage();
     var imgStrLs =
-        list.map((e) => base64Encode(File(e.path).readAsBytesSync())).toList();
-    product.images.addAll(imgStrLs);
+        list?.map((e) => base64Encode(File(e.path).readAsBytesSync())).toList();
+    if (imgStrLs != null) images.addAll(imgStrLs);
   }
 
   @action
   Future deleteImage(int index) async {
-    product.images.removeAt(index);
+    images.removeAt(index);
   }
 
   @action
   Future addName(String value) async {
-    product.name = value;
+    name = value;
   }
 
   @action
   Future addDesc(String value) async {
-    product.description = value;
+    description = value;
   }
 
   @action
   Future addVariant(Variant value) async {
-    product.variants.add(value);
+    variants.add(value);
   }
 
   @action
   Future deleteVariant(int index) async {
-    product.variants.removeAt(index);
+    variants.removeAt(index);
   }
 
   @action
   Future changeSize(String value, int index) async {
-    product.variants[index].size = value;
+    variants[index].size = value;
   }
 
   @action
   Future changeColor(ProductColor value, int index) async {
-    product.variants[index].color = value;
+    variants[index].color = value;
   }
 
   /// Add Product to Firebase
   @action
   Future<void> addProduct() async {
-    status = await _repo.addAProduct(product);
+    // status = await _repo.addAProduct(product.value);
   }
 }

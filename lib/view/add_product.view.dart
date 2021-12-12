@@ -57,7 +57,7 @@ class _AddProductState extends State<AddProduct> {
                 const SizedBox(
                   height: 5,
                 ),
-                const MultipleImagePicker(),
+                MultipleImagePicker(),
                 const SizedBox(
                   height: 15,
                 ),
