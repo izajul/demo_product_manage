@@ -1,3 +1,4 @@
+import 'package:demo_goods_manage_flutter_app/model/product.model.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/buttons.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/input_field.widget.dart';
@@ -204,7 +205,7 @@ class _ColorCheckBoxState extends State<ColorCheckBox> {
             widget.list.length,
             (index) {
               final data = widget.list[index];
-              return customRadioButton(data.color, index);
+              return customRadioButton(data.code, index);
             },
           ).toList(),
         )
@@ -253,17 +254,3 @@ final _colors = [
   ProductColor("white", 0xffffffff),
   ProductColor("black", 0xff000000)
 ];
-
-class Variant {
-  final String size;
-  final ProductColor color;
-  final double price;
-
-  Variant(this.size, this.color, {this.price = 0.0});
-}
-
-class ProductColor {
-  final String name;
-  final int color;
-  ProductColor(this.name, this.color);
-}
