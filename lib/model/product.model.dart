@@ -20,7 +20,7 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> jData) {
     var vList =
         (jData["variants"] as List).map((e) => Variant.fromJson(e)).toList();
-    var imgs = (json.encode(jData["images"]) as List)
+    var imgs = (json.decode(jData["images"]) as List)
         .map((e) => e.toString())
         .toList();
     return ProductModel(

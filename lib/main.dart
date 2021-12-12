@@ -1,6 +1,6 @@
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/utility/functions.dart';
-import 'package:demo_goods_manage_flutter_app/view/add_product.view.dart';
+import 'package:demo_goods_manage_flutter_app/view/product_list.view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Demo Goods Manage APP',
       theme: theme,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: AddProduct.routeName,
+      initialRoute: ProductList.routeName,
       debugShowCheckedModeBanner: false,
     );
   }
