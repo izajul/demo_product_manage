@@ -1,8 +1,12 @@
+import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
+import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/image_picker.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/input_field.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/product_variant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class AddProduct extends StatefulWidget {
   static const routeName = "add_product";
@@ -30,6 +34,7 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final store = Provider.of<AddProductStore>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -62,17 +67,23 @@ class _AddProductState extends State<AddProduct> {
                   height: 15,
                 ),
                 FormFieldRounded(
-                  controller: _nameController,
+                  onChange: (value) {
+                    store.addName(value);
+                  },
                   validateText: "Product Name Can't be Empty!",
                   label: "Product Name",
                   hintText: "Enter Product Name",
+                  initValue: store.name,
                 ),
                 FormFieldRounded(
-                  controller: _nameController,
+                  onChange: (value) {
+                    store.addDesc(value);
+                  },
                   validateText: "Product Description Can't be Empty!",
                   label: "Product Description",
                   hintText: "Enter Product Description",
                   isMultiline: true,
+                  initValue: store.description,
                 ),
                 const SizedBox(
                   height: 10,
@@ -81,20 +92,31 @@ class _AddProductState extends State<AddProduct> {
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 5),
-                      /*     side:
+                Observer(
+                  builder: (_) => store.status
+                      ? const Align(
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(
+                            color: MyColors.primaryAccent,
+                          ),
+                        )
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 5),
+                            /*     side:
                         const BorderSide(color: MyColors.borderDark, width: 1),*/
-                      maximumSize: const Size(150, 40),
-                      shadowColor: Colors.blueGrey,
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6)),
-                    ),
-                    onPressed: () {},
-                    child: const Text("Submit")),
+                            maximumSize: const Size(150, 40),
+                            shadowColor: Colors.blueGrey,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                          ),
+                          onPressed: () {
+                            store.addProduct().then((value) {});
+                          },
+                          child: const Text("Submit")),
+                ),
                 const SizedBox(
                   height: 20,
                 ),

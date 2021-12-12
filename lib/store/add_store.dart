@@ -107,7 +107,13 @@ abstract class _AddProductStore with Store {
 
   /// Add Product to Firebase
   @action
-  Future<void> addProduct() async {
-    // status = await _repo.addAProduct(product.value);
+  Future<bool> addProduct() async {
+    var product = ProductModel(
+        images: images,
+        variants: variants,
+        name: name,
+        description: description);
+    final res = await _repo.addAProduct(product);
+    return res;
   }
 }

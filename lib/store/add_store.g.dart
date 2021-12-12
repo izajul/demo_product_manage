@@ -151,7 +151,7 @@ mixin _$AddProductStore on _AddProductStore, Store {
   final _$addProductAsyncAction = AsyncAction('_AddProductStore.addProduct');
 
   @override
-  Future<void> addProduct() {
+  Future<bool> addProduct() {
     return _$addProductAsyncAction.run(() => super.addProduct());
   }
 
