@@ -5,10 +5,14 @@ class ProductModel {
   String description;
 
   /// will be store as base64
-  List<String> images;
-  List<Variant> variants;
+  final List<String> images;
+  final List<Variant> variants;
 
-  ProductModel(this.name, this.description, this.images, this.variants);
+  ProductModel(
+      {this.name = "",
+      this.description = "",
+      required this.images,
+      required this.variants});
 
   factory ProductModel.fromJsonStr(String jsonStr) =>
       ProductModel.fromJson(json.decode(jsonStr));
@@ -19,7 +23,11 @@ class ProductModel {
     var imgs = (json.encode(jData["images"]) as List)
         .map((e) => e.toString())
         .toList();
-    return ProductModel(jData["name"], jData["description"], imgs, vList);
+    return ProductModel(
+        name: jData["name"],
+        description: jData["description"],
+        images: imgs,
+        variants: vList);
   }
 
   Map toJson() {
@@ -33,9 +41,9 @@ class ProductModel {
 }
 
 class Variant {
-  final String size;
-  final double price;
-  final ProductColor color;
+  String size;
+  double price;
+  ProductColor color;
 
   Variant(this.size, this.color, {this.price = 0.0});
 
@@ -53,8 +61,8 @@ class Variant {
 }
 
 class ProductColor {
-  final String name;
-  final int code;
+  String name;
+  int code;
   ProductColor(this.name, this.code);
 
   factory ProductColor.fromJson(Map<String, dynamic> json) =>
