@@ -1,5 +1,6 @@
 import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
+import 'package:demo_goods_manage_flutter_app/view/product_list.view.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/image_picker.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/input_field.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/product_variant.dart';
@@ -118,7 +119,8 @@ class _AddProductState extends State<AddProduct> {
                               if (value) {
                                 msg = "Product Added Successful";
 
-                                /// Route to All Product List Page
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    ProductList.routeName, (route) => false);
                               } else {
                                 msg = "Product Added Failed";
                               }
