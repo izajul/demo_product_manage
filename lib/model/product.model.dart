@@ -42,10 +42,10 @@ class ProductModel {
 
 class Variant {
   String size;
-  double price;
+  String price;
   ProductColor color;
 
-  Variant(this.size, this.color, {this.price = 0.0});
+  Variant(this.size, this.color, {this.price = ""});
 
   factory Variant.fromJson(Map<String, dynamic> json) =>
       Variant(json["size"], ProductColor.fromJson(json["color"]),

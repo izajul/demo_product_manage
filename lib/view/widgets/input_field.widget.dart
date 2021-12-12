@@ -9,7 +9,9 @@ class FormFieldRounded extends StatelessWidget {
   final TextEditingController? controller;
   final String? validateText;
   final String? label;
+  final String? initValue;
   final bool isMultiline;
+  final onChange;
   TextStyle? labelStyle;
 
   FormFieldRounded(
@@ -21,7 +23,9 @@ class FormFieldRounded extends StatelessWidget {
       this.validateText,
       this.label,
       this.labelStyle,
-      this.isMultiline = false})
+      this.isMultiline = false,
+      this.initValue,
+      this.onChange})
       : super(key: key);
 
   @override
@@ -44,6 +48,8 @@ class FormFieldRounded extends StatelessWidget {
           SizedBox(
             width: widht,
             child: TextFormField(
+              initialValue: initValue,
+              onChanged: onChange,
               autofocus: false,
               style: textTheme.bodyText1,
               controller: controller,

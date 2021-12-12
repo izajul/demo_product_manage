@@ -66,13 +66,43 @@ abstract class _AddProductStore with Store {
   }
 
   @action
-  Future changeSize(String value, int index) async {
-    variants[index].size = value;
+  Future changeSize(String size, int index) async {
+    var vars = ObservableList<Variant>();
+    for (var i = 0; i < variants.length; i++) {
+      var v = variants[i];
+      if (i == index) {
+        v.size = size;
+      }
+      vars.add(v);
+    }
+    variants = vars;
   }
 
   @action
-  Future changeColor(ProductColor value, int index) async {
-    variants[index].color = value;
+  Future changeColor(ProductColor color, int index) async {
+    var vars = ObservableList<Variant>();
+    for (var i = 0; i < variants.length; i++) {
+      var v = variants[i];
+      if (i == index) {
+        v.color = color;
+      }
+      vars.add(v);
+    }
+    variants = vars;
+  }
+
+  @action
+  Future addPrice(String price, int index) async {
+    variants[index].price = price;
+    /* var vars = ObservableList<Variant>();
+    for (var i = 0; i < variants.length; i++) {
+      var v = variants[i];
+      if (i == index) {
+        v.price = price;
+      }
+      vars.add(v);
+    }
+    variants = vars;*/
   }
 
   /// Add Product to Firebase

@@ -130,15 +130,22 @@ mixin _$AddProductStore on _AddProductStore, Store {
   final _$changeSizeAsyncAction = AsyncAction('_AddProductStore.changeSize');
 
   @override
-  Future<dynamic> changeSize(String value, int index) {
-    return _$changeSizeAsyncAction.run(() => super.changeSize(value, index));
+  Future<dynamic> changeSize(String size, int index) {
+    return _$changeSizeAsyncAction.run(() => super.changeSize(size, index));
   }
 
   final _$changeColorAsyncAction = AsyncAction('_AddProductStore.changeColor');
 
   @override
-  Future<dynamic> changeColor(ProductColor value, int index) {
-    return _$changeColorAsyncAction.run(() => super.changeColor(value, index));
+  Future<dynamic> changeColor(ProductColor color, int index) {
+    return _$changeColorAsyncAction.run(() => super.changeColor(color, index));
+  }
+
+  final _$addPriceAsyncAction = AsyncAction('_AddProductStore.addPrice');
+
+  @override
+  Future<dynamic> addPrice(String price, int index) {
+    return _$addPriceAsyncAction.run(() => super.addPrice(price, index));
   }
 
   final _$addProductAsyncAction = AsyncAction('_AddProductStore.addProduct');
