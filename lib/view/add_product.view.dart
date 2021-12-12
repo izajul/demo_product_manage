@@ -113,7 +113,26 @@ class _AddProductState extends State<AddProduct> {
                                 borderRadius: BorderRadius.circular(6)),
                           ),
                           onPressed: () {
-                            store.addProduct().then((value) {});
+                            store.addProduct().then((value) {
+                              var msg = "";
+                              if (value) {
+                                msg = "Product Added Successful";
+
+                                /// Route to All Product List Page
+                              } else {
+                                msg = "Product Added Failed";
+                              }
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(
+                                  msg,
+                                  style: textTheme.subtitle1,
+                                ),
+                                backgroundColor:
+                                    value ? Colors.green : Colors.redAccent,
+                              ));
+                            });
                           },
                           child: const Text("Submit")),
                 ),
