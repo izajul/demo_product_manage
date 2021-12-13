@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:demo_goods_manage_flutter_app/store/products_store.dart';
+import 'package:demo_goods_manage_flutter_app/store/show_store.dart';
+import 'package:demo_goods_manage_flutter_app/store/store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/add_product.view.dart';
+import 'package:demo_goods_manage_flutter_app/view/product_details.view.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/buttons.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +22,13 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   late ProductsStore _store;
+  late ShowStore _showStore;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _store = Provider.of<ProductsStore>(context);
+    _store = Provider.of<Store>(context).productsStore;
+    _showStore = Provider.of<Store>(context).showStore;
     getProducts();
   }
 
@@ -53,7 +58,8 @@ class _ProductListState extends State<ProductList> {
                       Flexible(
                           child: ButtonOutLine(
                         widht: 130,
-                        onPress: () =>Navigator.pushNamed(context, AddProduct.routeName),
+                        onPress: () =>
+                            Navigator.pushNamed(context, AddProduct.routeName),
                         text: Text(
                           " Add Product",
                           style: textTheme.subtitle1,
@@ -87,7 +93,11 @@ class _ProductListState extends State<ProductList> {
                                 List.generate(_store.products.length, (index) {
                               final product = _store.products[index];
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  _showStore.addProduct(product);
+                                  Navigator.pushNamed(
+                                      context, ProductDetails.routeName);
+                                },
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 10),
                                   width: 200,

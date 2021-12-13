@@ -1,5 +1,6 @@
 import 'package:demo_goods_manage_flutter_app/model/product.model.dart';
 import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
+import 'package:demo_goods_manage_flutter_app/store/store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/buttons.widget.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/input_field.widget.dart';
@@ -15,7 +16,7 @@ class ProductVariant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<AddProductStore>(context);
+    final store = Provider.of<Store>(context).addProductStore;
     return Observer(
         builder: (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +84,7 @@ class ProductVariant extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6)),
                   ),
                   onPressed: () {
-                    store.addVariant(Variant(_sizes[0], _colors[0]));
+                    store.addVariant(Variant(sizes[0], colors[0]));
                   },
                   child: Row(
                     children: const [
@@ -122,9 +123,9 @@ class SizeCheckBox extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
-              _sizes.length,
+              sizes.length,
               (index) {
-                return customRadioButton(_sizes[index], variant[rootInx].size,
+                return customRadioButton(sizes[index], variant[rootInx].size,
                     (size) {
                   store.changeSize(size, rootInx);
                 });
@@ -178,10 +179,9 @@ class ColorCheckBox extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
-              _colors.length,
+              colors.length,
               (index) {
-                return customRadioButton(_colors[index], variant.color,
-                    (color) {
+                return customRadioButton(colors[index], variant.color, (color) {
                   store.changeColor(color, rootInx);
                 });
               },
@@ -224,8 +224,8 @@ class ColorCheckBox extends StatelessWidget {
   }
 }
 
-final _sizes = ["small", "large"];
-final _colors = [
+final sizes = ["small", "large"];
+final colors = [
   ProductColor("white", 0xffffffff),
   ProductColor("black", 0xff000000)
 ];

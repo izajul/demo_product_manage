@@ -1,4 +1,4 @@
-import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
+import 'package:demo_goods_manage_flutter_app/store/store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/product_list.view.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/image_picker.widget.dart';
@@ -35,7 +35,7 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final store = Provider.of<AddProductStore>(context);
+    final store = Provider.of<Store>(context).addProductStore;
     return Scaffold(
       body: SafeArea(
         child: Container(
