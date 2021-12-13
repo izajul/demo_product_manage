@@ -40,11 +40,26 @@ abstract class _ShowStore with Store {
   @action
   Future changeSize(String v) async {
     _size = v;
+    _setPrice();
   }
 
   @action
   Future changeColor(String v) async {
     _color = v;
+    _setPrice();
+  }
+
+  Future _setPrice() async {
+    Variant? variant;
+    for (var v in product.variants) {
+      if (v.color.name == _color && v.size == _size) {
+        variant = v;
+      }
+    }
+
+    if (variant != null) {
+      _price = variant.price;
+    }
   }
 
   @action

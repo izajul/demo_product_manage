@@ -1,5 +1,4 @@
 import 'package:demo_goods_manage_flutter_app/model/product.model.dart';
-import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
 import 'package:demo_goods_manage_flutter_app/store/store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:demo_goods_manage_flutter_app/view/widgets/buttons.widget.dart';
@@ -110,7 +109,7 @@ class SizeCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<AddProductStore>(context);
+    final store = Provider.of<Store>(context).addProductStore;
     return Observer(builder: (_) {
       final variant = store.variants;
       return Column(
@@ -165,7 +164,7 @@ class ColorCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<AddProductStore>(context);
+    final store = Provider.of<Store>(context).addProductStore;
     return Observer(builder: (_) {
       final variant = store.variants[rootInx];
 

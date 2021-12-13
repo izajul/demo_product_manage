@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:demo_goods_manage_flutter_app/store/add_store.dart';
+import 'package:demo_goods_manage_flutter_app/store/store.dart';
 import 'package:demo_goods_manage_flutter_app/utility/appearance.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class MultipleImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<AddProductStore>(context);
+    final store = Provider.of<Store>(context).addProductStore;
     return Observer(
         builder: (_) => GridView.count(
               crossAxisCount: 2,
